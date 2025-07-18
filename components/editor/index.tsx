@@ -16,7 +16,7 @@ import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import { Loader, Sparkles } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
-import { AIChatSession } from "@/lib/google-ai-model";
+// import { generateAIChatCompletion } from "@/lib/google-ai-model";
 
 const PROMPT = `Given the job title "{jobTitle}",
  create 6-7 concise and personal bullet points in
@@ -48,12 +48,14 @@ const RichTextEditor = (props: {
       }
       setLoading(true);
       const prompt = PROMPT.replace("{jobTitle}", jobTitle);
-      const result = await AIChatSession.sendMessage(prompt);
-      const responseText = await result.response.text();
-      const validJsonArray = JSON.parse(`[${responseText}]`);
-
-      setValue(validJsonArray?.[0]);
-      onEditorChange(validJsonArray?.[0]);
+      const response = await fetch("/api/ai-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt }),
+      });
+      const data = await response.json();
+      setValue(data.result);
+      onEditorChange(data.result);
     } catch (error) {
       console.log(error);
       toast({
@@ -80,7 +82,7 @@ const RichTextEditor = (props: {
           onClick={() => GenerateSummaryFromAI()}
         >
           <>
-            <Sparkles size="15px" className="text-purple-500" />
+            <Sparkles size="15px" className="text-[#FF6F3C]" />
             Generate with AI
           </>
           {loading && <Loader size="13px" className="animate-spin" />}

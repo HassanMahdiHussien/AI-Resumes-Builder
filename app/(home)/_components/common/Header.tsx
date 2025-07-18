@@ -38,26 +38,21 @@ const Header = () => {
           <div>
             <Link
               href="/dashboard"
-              className="font-black text-[20px]
-                      text-primary
-                          "
+              className="font-black text-[20px] text-primary flex items-center gap-2"
             >
-              CVbuild.ai
+              <img src="https://hashtalenthub.com/wp-content/uploads/2025/06/logo_transparent-1.png" alt="Logo" style={{height: 64, width: 64}} />
             </Link>
           </div>
 
           {isAuthenticated && user ? (
             <div className="flex items-center gap-2">
               <span
-                className="font-normal
-               text-black/50
-               dark:text-primary-foreground"
+                className="font-normal text-lg md:text-xl text-black/50 dark:text-primary-foreground"
               >
                 Hi,
               </span>
               <h5
-                className="font-bold text-black 
-              dark:text-primary-foreground"
+                className="font-bold text-2xl md:text-3xl text-black dark:text-primary-foreground"
               >
                 {user?.given_name} {user?.family_name}
               </h5>

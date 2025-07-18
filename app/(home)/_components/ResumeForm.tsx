@@ -24,11 +24,7 @@ const ResumeForm = () => {
   "
     >
       <div
-        className="shadow-md rounded-md bg-white
-      !border-t-primary !border-t-4 
-      dark:bg-card dark:border
-      dark:border-gray-800
-      "
+        className="shadow-md rounded-md bg-white !border-t-4 !border-[#FF6F3C] dark:bg-card dark:border dark:border-gray-800"
       >
         <div
           className="

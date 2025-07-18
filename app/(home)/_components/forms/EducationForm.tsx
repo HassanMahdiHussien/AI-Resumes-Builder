@@ -103,17 +103,13 @@ const EducationForm = (props: { handleNext: () => void }) => {
   );
 
   return (
-    <div>
+    <div className="border-t-4 border-[#FFD464] rounded-md bg-white p-6 shadow">
       <div className="w-full">
         <h2 className="font-bold text-lg">Education</h2>
         <p className="text-sm">Add your education details</p>
       </div>
       <form onSubmit={handleSubmit}>
-        <div
-          className="border w-full h-auto
-              divide-y-[1px] rounded-md px-3 pb-4 my-5
-              "
-        >
+        <div className="w-full h-auto divide-y-[1px] px-3 pb-4 my-5">
           {educationList?.map((item, index) => (
             <div key={index}>
               <div
@@ -204,9 +200,7 @@ const EducationForm = (props: { handleNext: () => void }) => {
               {index === educationList.length - 1 &&
                 educationList.length < 5 && (
                   <Button
-                    className="gap-1 mt-1 text-primary 
-                          border-primary/50"
-                    variant="outline"
+                    className="gap-1 mt-1 rounded-full bg-[#FFD464] text-[#1A237E] font-bold uppercase tracking-widest px-6 py-2 shadow-none border-0 hover:bg-[#ffe28a] transition"
                     type="button"
                     disabled={isPending}
                     onClick={addNewEducation}
@@ -218,7 +212,7 @@ const EducationForm = (props: { handleNext: () => void }) => {
             </div>
           ))}
         </div>
-        <Button className="mt-4" type="submit" disabled={isPending}>
+        <Button className="mt-4 rounded-full bg-[#FFD464] text-[#1A237E] font-bold uppercase tracking-widest px-8 py-3 shadow-none border-0 hover:bg-[#ffe28a] transition" type="submit" disabled={isPending}>
           {isPending && <Loader size="15px" className="animate-spin" />}
           Save Changes
         </Button>

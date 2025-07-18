@@ -10,22 +10,12 @@ import { Button } from "@/components/ui/button";
 const NavBar = () => {
   return (
     <div className="shadow-sm w-full sticky top-0  bg-white dark:bg-gray-900 z-[9999]">
-      <div className="w-full flex items-center justify-center h-auto bg-black">
-        <div className="max-w-6xl mx-auto py-2">
-          <p className="text-white text-sm">
-            <b>Subcribe to the channel 🙏</b>! Boost your resume with CVbuild.ai
-            Resume Course out{" "}
-            <a className="inline-flex items-center gap-1 font-bold text-primary">
-              CVbuild.ai Course
-              <ExternalLink size="14px" />
-            </a>
-          </p>
-        </div>
-      </div>
       <div className="w-full mx-auto max-w-7xl p-3 px-5 flex items-center justify-between ">
         <div className="flex items-center flex-1 gap-9">
           <div>
-            <h5 className="font-black text-lg text-primary">CVbuild.ai</h5>
+            <h5 className="font-black text-lg text-primary flex items-center gap-2">
+              <img src="https://hashtalenthub.com/wp-content/uploads/2025/06/logo_transparent-1.png" alt="Logo" style={{height: 56, width: 56}} />
+            </h5>
           </div>
 
           <div className="hidden lg:flex">
@@ -44,10 +34,10 @@ const NavBar = () => {
         </div>
         <div className="flex items-center gap-4">
           <LoginLink>
-            <Button variant="outline">Sign In</Button>
+            <Button variant="outline" className="rounded-full px-6 py-2 font-bold uppercase tracking-widest shadow-none border-0 text-[#1A237E] bg-white hover:bg-gray-100 transition">Sign In</Button>
           </LoginLink>
           <RegisterLink>
-            <Button>Get Started</Button>
+            <Button className="rounded-full bg-[#FFD464] text-[#1A237E] font-bold uppercase tracking-widest px-6 py-2 shadow-none border-0 hover:bg-[#ffe28a] transition">Get Started</Button>
           </RegisterLink>
         </div>
       </div>

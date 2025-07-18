@@ -72,9 +72,8 @@ const Share = () => {
 
   return (
     <Popover>
-      <PopoverTrigger
+      <PopoverTrigger asChild
         disabled={resumeInfo?.status === "archived" ? true : false}
-        asChild
       >
         <Button
           disabled={

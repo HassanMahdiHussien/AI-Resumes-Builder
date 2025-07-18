@@ -178,7 +178,7 @@ const PersonalInfoForm = (props: { handleNext: () => void }) => {
           </div>
 
           <Button
-            className="mt-4"
+            className="mt-4 rounded-full bg-[#FFD464] text-[#1A237E] font-bold uppercase tracking-widest px-8 py-3 shadow-none border-0 hover:bg-[#ffe28a] transition"
             type="submit"
             disabled={
               isPending || resumeInfo?.status === "archived" ? true : false

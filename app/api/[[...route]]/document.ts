@@ -54,6 +54,7 @@ const documentRoute = new Hono()
           { status: 200 }
         );
       } catch (error) {
+        console.error(error);
         return c.json(
           {
             success: false,
@@ -260,6 +261,7 @@ const documentRoute = new Hono()
           { status: 200 }
         );
       } catch (error) {
+        console.error(error);
         return c.json(
           {
             success: false,
@@ -326,6 +328,7 @@ const documentRoute = new Hono()
           { status: 200 }
         );
       } catch (error) {
+        console.error(error);
         return c.json(
           {
             success: false,
@@ -356,6 +359,7 @@ const documentRoute = new Hono()
         data: documents,
       });
     } catch (error) {
+      console.error(error);
       return c.json(
         {
           success: false,
@@ -398,6 +402,7 @@ const documentRoute = new Hono()
           data: documentData,
         });
       } catch (error) {
+        console.error(error);
         return c.json(
           {
             success: false,
@@ -447,6 +452,7 @@ const documentRoute = new Hono()
           data: documentData,
         });
       } catch (error) {
+        console.error(error);
         return c.json(
           {
             success: false,
@@ -476,6 +482,7 @@ const documentRoute = new Hono()
         data: documents,
       });
     } catch (error) {
+      console.error(error);
       return c.json(
         {
           success: false,

@@ -4,7 +4,7 @@ import { logger } from "hono/logger";
 import { HTTPException } from "hono/http-exception";
 import documentRoute from "./document";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 const app = new Hono();
 

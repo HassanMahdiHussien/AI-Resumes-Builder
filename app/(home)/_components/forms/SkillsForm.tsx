@@ -164,7 +164,7 @@ const SkillsForm = () => {
             </div>
           ))}
         </div>
-        <Button className="mt-4" type="submit" disabled={isPending}>
+        <Button className="mt-4 rounded-full bg-[#FFD464] text-[#1A237E] font-bold uppercase tracking-widest px-8 py-3 shadow-none border-0 hover:bg-[#ffe28a] transition" type="submit" disabled={isPending}>
           {isPending && <Loader size="15px" className="animate-spin" />}
           Save & Done
         </Button>

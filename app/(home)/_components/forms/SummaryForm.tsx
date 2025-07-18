@@ -6,7 +6,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { useResumeContext } from "@/context/resume-info-provider";
 import useUpdateDocument from "@/features/document/use-update-document";
 import { toast } from "@/hooks/use-toast";
-import { AIChatSession } from "@/lib/google-ai-model";
 import { generateThumbnail } from "@/lib/helper";
 import { ResumeDataType } from "@/types/resume.type";
 import { Loader, Sparkles } from "lucide-react";
@@ -88,10 +87,29 @@ const SummaryForm = (props: { handleNext: () => void }) => {
       if (!jobTitle) return;
       setLoading(true);
       const PROMPT = prompt.replace("{jobTitle}", jobTitle);
-      const result = await AIChatSession.sendMessage(PROMPT);
-      const responseText = await result.response.text();
-      console.log(responseText);
-      setAiGeneratedSummary(JSON?.parse(responseText));
+      const response = await fetch("/api/ai-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: PROMPT }),
+      });
+      const data = await response.json();
+      // معالجة الرد إذا كان يحتوي على كائنات داخلية
+      let parsed: GeneratesSummaryType = { fresher: "", mid: "", experienced: "" };
+      try {
+        const raw = JSON.parse(data.result);
+        // إذا كان كل قيمة عبارة عن كائن فيه مفتاح summary، استخرج النص فقط
+        (Object.keys(parsed) as (keyof GeneratesSummaryType)[]).forEach((key) => {
+          if (typeof raw[key] === "object" && raw[key]?.summary) {
+            parsed[key] = raw[key].summary;
+          } else if (typeof raw[key] === "string") {
+            parsed[key] = raw[key];
+          }
+        });
+      } catch (e) {
+        // إذا فشل البارس، خلي القيم فارغة
+        parsed = { fresher: "", mid: "", experienced: "" };
+      }
+      setAiGeneratedSummary(parsed);
     } catch (error) {
       toast({
         title: "Failed to generate summary",
@@ -133,7 +151,7 @@ const SummaryForm = (props: { handleNext: () => void }) => {
               disabled={loading || isPending}
               onClick={() => GenerateSummaryFromAI()}
             >
-              <Sparkles size="15px" className="text-purple-500" />
+              <Sparkles size="15px" className="text-[#FF6F3C]" />
               Generate with AI
             </Button>
           </div>
